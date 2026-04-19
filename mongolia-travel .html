@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wild Mongolia Tours | 몽골 여행</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Raleway:wght@300;400;500;600&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --deep: #0D1117;
+    --earth: #2C1A0E;
+    --sky: #1A3A5C;
+    --sand: #E8D5A3;
+    --cream: #F5EDD8;
+    --rust: #8B3A1A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Raleway', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* LANGUAGE TOGGLE */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 12px 40px;
+    background: rgba(13,17,23,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .lang-btn {
+    background: none;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 18px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+
+  .lang-btn:first-child { border-right: none; }
+  .lang-btn.active, .lang-btn:hover {
+    background: var(--gold);
+    color: var(--deep);
+  }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(13,17,23,0.3) 0%, rgba(13,17,23,0.1) 40%, rgba(13,17,23,0.7) 100%),
+      url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1600&q=80') center/cover no-repeat;
+    transform: scale(1.05);
+    animation: slowZoom 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowZoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.12); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 1.2s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 110px);
+    font-weight: 900;
+    line-height: 0.95;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    margin-bottom: 12px;
+  }
+
+  .hero h1 span { color: var(--gold); font-style: italic; }
+
+  .hero-sub {
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: var(--sand);
+    margin: 24px 0 40px;
+    text-transform: uppercase;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--deep);
+    padding: 16px 48px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+
+  .hero-cta:hover {
+    background: var(--cream);
+    transform: translateY(-2px);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .scroll-hint::before {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+  }
+
+  /* INTRO */
+  .intro {
+    padding: 100px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .intro p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: rgba(245,237,216,0.8);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .gold-line {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 32px auto;
+  }
+
+  /* TOURS SECTION */
+  .tours {
+    padding: 60px 40px 100px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .tours-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .tours-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    margin-top: 16px;
+  }
+
+  .tours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 2px;
+  }
+
+  .tour-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+    background: var(--earth);
+  }
+
+  .tour-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,17,23,0.95) 0%, rgba(13,17,23,0.3) 50%, transparent 100%);
+    z-index: 1;
+    transition: opacity 0.5s;
+  }
+
+  .tour-card:hover::before {
+    opacity: 0.7;
+  }
+
+  .tour-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+
+  .tour-card:hover .tour-img {
+    transform: scale(1.08);
+  }
+
+  .tour-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 32px 30px;
+    z-index: 2;
+    transform: translateY(0);
+    transition: transform 0.4s;
+  }
+
+  .tour-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--deep);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .tour-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .tour-sub {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--sand);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tour-sub::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .tour-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(245,237,216,0.75);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s;
+    opacity: 0;
+  }
+
+  .tour-card:hover .tour-desc {
+    max-height: 120px;
+    opacity: 1;
+  }
+
+  .tour-price {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s 0.1s;
+  }
+
+  .tour-card:hover .tour-price {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tour-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    background: #25D366;
+    color: white;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s 0.15s;
+    white-space: nowrap;
+  }
+
+  .tour-card:hover .tour-whatsapp {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tour-whatsapp:hover {
+    background: #1ebe5c;
+  }
+
+  /* FEATURES */
+  .features {
+    background: linear-gradient(135deg, var(--earth) 0%, #1a0e06 100%);
+    padding: 100px 40px;
+    text-align: center;
+  }
+
+  .features h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    margin: 16px 0 60px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .feature-item {
+    padding: 32px 20px;
+    border: 1px solid rgba(201,168,76,0.2);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .feature-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .feature-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .feature-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--gold);
+  }
+
+  .feature-item p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,237,216,0.65);
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact::before {
+    content: 'MONGOLIA';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    font-weight: 900;
+    color: rgba(201,168,76,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .contact h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    margin: 16px 0 24px;
+    position: relative;
+  }
+
+  .contact p {
+    font-size: 16px;
+    color: rgba(245,237,216,0.7);
+    margin-bottom: 48px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: #25D366;
+    color: white;
+    padding: 20px 48px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    position: relative;
+  }
+
+  .whatsapp-btn:hover {
+    background: #1ebe5c;
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(37,211,102,0.3);
+  }
+
+  .whatsapp-icon {
+    width: 28px;
+    height: 28px;
+    fill: white;
+  }
+
+  .contact-note {
+    margin-top: 24px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(245,237,216,0.4);
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  /* FOOTER */
+  footer {
+    background: rgba(0,0,0,0.6);
+    padding: 32px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  footer p {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(245,237,216,0.35);
+    text-transform: uppercase;
+  }
+
+  /* KOREAN */
+  .ko { display: none; font-family: 'Noto Serif KR', serif; }
+  .en { display: block; }
+  body.korean .ko { display: block; }
+  body.korean .en { display: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .tours-grid { grid-template-columns: 1fr; }
+    .lang-bar { padding: 10px 20px; }
+    .hero h1 { font-size: 48px; }
+    .intro, .tours, .contact { padding: 60px 24px; }
+    .features { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Language Bar -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow en">Discover the Land of Eternal Blue Sky</span>
+    <span class="hero-eyebrow ko">영원한 푸른 하늘의 땅을 발견하세요</span>
+    <h1 class="en">Wild<br><span>Mongolia</span></h1>
+    <h1 class="ko">야생의<br><span>몽골</span></h1>
+    <p class="hero-sub en">Authentic 7-Day Adventures</p>
+    <p class="hero-sub ko">정통 7일 어드벤처</p>
+    <a href="#tours" class="hero-cta en">Explore Tours</a>
+    <a href="#tours" class="hero-cta ko">투어 보기</a>
+  </div>
+  <div class="scroll-hint">↓ Scroll</div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <p class="section-label en">About Our Journey</p>
+  <p class="section-label ko">우리의 여행에 대해</p>
+  <h2 class="en">Where the Horizon Has No End</h2>
+  <h2 class="ko">지평선이 끝없이 펼쳐지는 곳</h2>
+  <div class="gold-line"></div>
+  <p class="en">Step beyond the ordinary. Mongolia is a land of ancient shamans, nomadic herders, sacred mountains, and skies that stretch forever. Our carefully crafted 7-day tours bring you deep into the most remote and breathtaking corners of this vast wilderness — from the crystal lakes of Khuvsgul to the singing sands of the Gobi.</p>
+  <p class="ko">일상을 벗어나 특별한 여행을 떠나세요. 몽골은 고대 샤먼, 유목민, 신성한 산맥, 그리고 끝없이 펼쳐지는 하늘의 땅입니다. 저희의 정성스럽게 기획된 7일 투어는 홉스골의 맑은 호수부터 고비의 노래하는 모래사막까지, 이 광대한 대자연의 가장 오지이자 경이로운 곳들로 여러분을 안내합니다.</p>
+</section>
+
+<!-- TOURS -->
+<section class="tours" id="tours">
+  <div class="tours-header">
+    <p class="section-label en">Our Signature Routes</p>
+    <p class="section-label ko">시그니처 루트</p>
+    <h2 class="en">7-Day <span style="color:var(--gold);font-style:italic">Expeditions</span></h2>
+    <h2 class="ko">7일 <span style="color:var(--gold)">탐험</span></h2>
+  </div>
+
+  <div class="tours-grid">
+
+    <!-- Tour 1: Khuvsgul Tsaatan -->
+    <div class="tour-card">
+      <img class="tour-img" src="https://images.unsplash.com/photo-1621413465946-33e9e3a9d0a6?w=800&q=80" alt="Khuvsgul Lake Mongolia" onerror="this.src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80'">
+      <div class="tour-info">
+        <span class="tour-badge en">7 Days</span>
+        <span class="tour-badge ko">7일</span>
+        <h3 class="en">Khuvsgul & Tsaatan Reindeer People</h3>
+        <h3 class="ko">홉스골 & 차탕 순록 유목민</h3>
+        <p class="tour-sub en">Northern Mongolia</p>
+        <p class="tour-sub ko">북부 몽골</p>
+        <p class="tour-desc en">Journey to the "Dark Blue Pearl" — Mongolia's deepest lake — then trek through taiga forests to meet the legendary Tsaatan reindeer herders. Sleep in traditional tepees under a million stars. Witness shamanic rituals passed down for centuries.</p>
+        <p class="tour-desc ko">몽골 최심 호수 "짙은 푸른 진주" 홉스골로 떠나세요. 타이가 숲을 트레킹하며 전설적인 차탕 순록 유목민을 만나보세요. 전통 티피에서 수백만 개의 별 아래 잠들고, 수백 년 이어온 샤먼 의식을 직접 목격하세요.</p>
+        <p class="tour-price en">📍 Murun → Khuvsgul → Tsaatan Camp</p>
+        <p class="tour-price ko">📍 무른 → 홉스골 → 차탕 캠프</p>
+        <a href="https://wa.me/97699298481" class="tour-whatsapp en" target="_blank">💬 WhatsApp дээр дэлгэрэнгүй мэдээлэл авах</a>
+        <a href="https://wa.me/97699298481" class="tour-whatsapp ko" target="_blank">💬 WhatsApp으로 자세히 문의하기</a>
+      </div>
+    </div>
+
+    <!-- Tour 2: Altai Tavan Bogd -->
+    <div class="tour-card">
+      <img class="tour-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Altai Tavan Bogd Mountains" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80'">
+      <div class="tour-info">
+        <span class="tour-badge en">7 Days</span>
+        <span class="tour-badge ko">7일</span>
+        <h3 class="en">Altai Tavan Bogd — Bayan-Ölgii</h3>
+        <h3 class="ko">알타이 타왕 복드 — 바양울기</h3>
+        <p class="tour-sub en">Western Mongolia</p>
+        <p class="tour-sub ko">서부 몽골</p>
+        <p class="tour-desc en">Discover the majestic "Five Saints" peaks of the Mongolian Altai where the borders of Mongolia, Russia, and China converge. Encounter the Kazakh eagle hunters, camp beside glacial lakes, and witness a landscape that feels like the edge of the world.</p>
+        <p class="tour-desc ko">몽골, 러시아, 중국의 국경이 만나는 곳에 우뚝 선 "다섯 성인" 봉우리를 탐험하세요. 카자흐 독수리 사냥꾼을 만나고, 빙하 호수 옆에서 캠핑하며, 세상의 끝처럼 느껴지는 대자연을 경험하세요.</p>
+        <p class="tour-price en">📍 Ölgii → Tavan Bogd → Eagle Festival</p>
+        <p class="tour-price ko">📍 올기 → 타왕 복드 → 독수리 축제</p>
+        <a href="https://wa.me/97699298481" class="tour-whatsapp en" target="_blank">💬 WhatsApp дээр дэлгэрэнгүй мэдээлэл авах</a>
+        <a href="https://wa.me/97699298481" class="tour-whatsapp ko" target="_blank">💬 WhatsApp으로 자세히 문의하기</a>
+      </div>
+    </div>
+
+    <!-- Tour 3: Gobi Desert -->
+    <div class="tour-card">
+      <img class="tour-img" src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80" alt="Gobi Desert Mongolia" onerror="this.src='https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80'">
+      <div class="tour-info">
+        <span class="tour-badge en">7 Days</span>
+        <span class="tour-badge ko">7일</span>
+        <h3 class="en">Southern & Middle Gobi Desert</h3>
+        <h3 class="ko">남고비 & 중앙고비 사막</h3>
+        <p class="tour-sub en">South Mongolia</p>
+        <p class="tour-sub ko">남부 몽골</p>
+        <p class="tour-desc en">Traverse the legendary Gobi — from the towering Khongor Sand Dunes to the dinosaur fossil beds of Bayanzag (the Flaming Cliffs). Ride Bactrian camels, explore hidden oases, and stargaze in one of Earth's darkest skies. An ancient world frozen in time.</p>
+        <p class="tour-desc ko">전설적인 고비를 횡단하세요. 높이 솟은 홍고린 모래언덕부터 바양작(불타는 절벽)의 공룡 화석지까지. 쌍봉낙타를 타고, 숨겨진 오아시스를 탐험하며, 지구에서 가장 어두운 하늘 아래 별을 관측하세요.</p>
+        <p class="tour-price en">📍 Ulaanbaatar → Khongor → Bayanzag</p>
+        <p class="tour-price ko">📍 울란바타르 → 홍고린 → 바양작</p>
+        <a href="https://wa.me/97699298481" class="tour-whatsapp en" target="_blank">💬 WhatsApp дээр дэлгэрэнгүй мэдээлэл авах</a>
+        <a href="https://wa.me/97699298481" class="tour-whatsapp ko" target="_blank">💬 WhatsApp으로 자세히 문의하기</a>
+      </div>
+    </div>
+
+    <!-- Tour 4: Gobi East — Дорнод Говь -->
+    <div class="tour-card">
+      <img class="tour-img" src="https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&q=80" alt="Gobi East Mongolia" onerror="this.src='https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80'">
+      <div class="tour-info">
+        <span class="tour-badge en">7 Days</span>
+        <span class="tour-badge ko">7일</span>
+        <h3 class="en">Eastern Gobi — Ikh Gazriin Chuluu</h3>
+        <h3 class="ko">동부 고비 — 익 가즈린 출루</h3>
+        <p class="tour-sub en">East Gobi, Mongolia</p>
+        <p class="tour-sub ko">동부 고비, 몽골</p>
+        <p class="tour-desc en">Explore the wild East Gobi steppe — vast open plains, dramatic granite rock formations of Ikh Gazriin Chuluu, ancient ruins, and rare wildlife including Mongolian gazelles. Experience the raw, untouched wilderness far from tourist crowds.</p>
+        <p class="tour-desc ko">광활한 동부 고비 초원을 탐험하세요. 극적인 화강암 바위 지형 익 가즈린 출루, 고대 유적, 몽골 가젤 등 희귀 야생동물을 만날 수 있습니다. 관광객이 없는 순수한 대자연을 경험하세요.</p>
+        <p class="tour-price en">📍 Ulaanbaatar → Mandalgovi → Ikh Gazriin Chuluu</p>
+        <p class="tour-price ko">📍 울란바타르 → 만달고비 → 익 가즈린 출루</p>
+        <a href="https://wa.me/97699298481" class="tour-whatsapp en" target="_blank">💬 WhatsApp дээр дэлгэрэнгүй мэдээлэл авах</a>
+        <a href="https://wa.me/97699298481" class="tour-whatsapp ko" target="_blank">💬 WhatsApp으로 자세히 문의하기</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <p class="section-label en">Why Choose Us</p>
+  <p class="section-label ko">왜 저희를 선택해야 할까요</p>
+  <h2 class="en">The <span style="color:var(--gold);font-style:italic">Wild Mongolia</span> Difference</h2>
+  <h2 class="ko"><span style="color:var(--gold)">Wild Mongolia</span>의 차이점</h2>
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feature-icon">🏕️</div>
+      <h4 class="en">Authentic Ger Camps</h4>
+      <h4 class="ko">정통 게르 캠프</h4>
+      <p class="en">Sleep in real nomadic gers with local families — no tourist resorts, just raw Mongolia.</p>
+      <p class="ko">현지 가족과 함께 진정한 유목민 게르에서 숙박하세요. 관광 리조트가 아닌 진짜 몽골을 경험하세요.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🦅</div>
+      <h4 class="en">Expert Local Guides</h4>
+      <h4 class="ko">전문 현지 가이드</h4>
+      <p class="en">Our guides are born and raised in these regions — they know every trail, legend, and family.</p>
+      <p class="ko">저희 가이드는 이 지역 출신으로, 모든 길과 전설, 가족을 알고 있습니다.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🐎</div>
+      <h4 class="en">Small Group Only</h4>
+      <h4 class="ko">소규모 그룹만</h4>
+      <p class="en">Maximum 8 travelers per group. This is not mass tourism — this is a personal expedition.</p>
+      <p class="ko">그룹당 최대 8명. 대규모 관광이 아닌 개인적인 탐험입니다.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🌟</div>
+      <h4 class="en">All-Inclusive 7 Days</h4>
+      <h4 class="ko">7일 올인클루시브</h4>
+      <p class="en">Transfers, meals, accommodation, and activities all included. Just bring your sense of wonder.</p>
+      <p class="ko">교통, 식사, 숙박, 액티비티 모두 포함. 경이로운 마음만 가지고 오세요.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🌐</div>
+      <h4 class="en">English & Korean</h4>
+      <h4 class="ko">영어 & 한국어</h4>
+      <p class="en">Fully bilingual service. Korean-speaking guides available for all tours.</p>
+      <p class="ko">완전한 이중 언어 서비스. 모든 투어에 한국어 가이드가 준비되어 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-label en">Ready to Explore?</p>
+  <p class="section-label ko">탐험할 준비가 되셨나요?</p>
+  <h2 class="en">Book Your<br><span style="color:var(--gold);font-style:italic">Adventure</span></h2>
+  <h2 class="ko">어드벤처를<br><span style="color:var(--gold)">예약하세요</span></h2>
+  <p class="en">Message us on WhatsApp for availability, custom tours, and any questions. We respond within 24 hours.</p>
+  <p class="ko">WhatsApp으로 메시지를 보내 예약 가능 여부, 맞춤 투어, 문의사항을 확인하세요. 24시간 이내에 답변해 드립니다.</p>
+  <a href="https://wa.me/97699298481" class="whatsapp-btn" target="_blank">
+    <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    +976 9929 8481
+  </a>
+  <p class="contact-note en">WhatsApp · English · 한국어 · Available Daily</p>
+  <p class="contact-note ko">WhatsApp · 영어 · 한국어 · 매일 응답 가능</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Wild Mongolia Tours · Ulaanbaatar, Mongolia · +976 9929 8481</p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('korean', lang === 'ko');
+    document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', (lang === 'ko' && i === 1) || (lang === 'en' && i === 0));
+    });
+  }
+</script>
+
+</body>
+</html>
